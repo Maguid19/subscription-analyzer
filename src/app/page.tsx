@@ -11,7 +11,6 @@ import {
   Brain,
   CheckCircle,
   Star,
-  ArrowRight,
   DollarSign,
   Clock,
   Target
@@ -99,7 +98,7 @@ export default function HomePage() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-text text-center mb-12">
-              Struggling to manage subscriptions? You're not alone.
+              Struggling to manage subscriptions? You&apos;re not alone.
             </h2>
             <p className="text-xl text-text-secondary text-center mb-16 max-w-3xl mx-auto">
               Most people waste hundreds of dollars on forgotten subscriptions, leaving no time to focus on what actually matters.
@@ -111,7 +110,7 @@ export default function HomePage() {
                   <Target className="w-8 h-8 text-red-500" />
                 </div>
                 <h3 className="text-xl font-semibold text-text mb-2">Forgotten Subscriptions</h3>
-                <p className="text-text-secondary">Lose track of what you're paying for</p>
+                <p className="text-text-secondary">Lose track of what you&apos;re paying for</p>
               </div>
               <div className="text-center">
                 <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -125,7 +124,7 @@ export default function HomePage() {
                   <DollarSign className="w-8 h-8 text-yellow-500" />
                 </div>
                 <h3 className="text-xl font-semibold text-text mb-2">Wasted Money</h3>
-                <p className="text-text-secondary">Paying for services you don't use</p>
+                <p className="text-text-secondary">Paying for services you don&apos;t use</p>
               </div>
               <div className="text-center">
                 <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -137,7 +136,7 @@ export default function HomePage() {
             </div>
 
             <div className="text-center">
-              <p className="text-2xl font-semibold text-text mb-4">But there's a better way</p>
+              <p className="text-2xl font-semibold text-text mb-4">But there&apos;s a better way</p>
             </div>
           </div>
         </div>
