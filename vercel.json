@@ -74,6 +74,9 @@
   ],
   "public": true,
   "protectionBypass": [
-    "/api/webhooks/*"
+    {
+      "source": "/api/webhooks/*",
+      "secret": "VERCEL_BYPASS_SECRET"
+    }
   ]
 }
