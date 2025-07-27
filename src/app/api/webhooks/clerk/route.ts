@@ -16,24 +16,6 @@ export async function OPTIONS() {
 }
 
 export async function POST(req: Request) {
-  // Check for Vercel bypass secret
-  const bypassSecret = process.env.VERCEL_BYPASS_SECRET;
-  const url = new URL(req.url);
-  const providedSecret = url.searchParams.get('secret');
-
-  // If bypass secret is configured, verify it
-  if (bypassSecret && providedSecret !== bypassSecret) {
-    console.error('Invalid bypass secret provided');
-    return new Response('Unauthorized', {
-      status: 401,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'POST, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type, svix-id, svix-timestamp, svix-signature',
-      }
-    });
-  }
-
   // Get the webhook secret from environment variables
   const webhookSecret = process.env.CLERK_WEBHOOK_SECRET;
 

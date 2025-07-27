@@ -3,41 +3,10 @@
   "outputDirectory": ".next",
   "framework": "nextjs",
   "installCommand": "npm ci",
-  "devCommand": "npm run dev",
-  "regions": ["iad1"],
-  "functions": {
-    "app/api/**/*.ts": {
-      "maxDuration": 30
-    },
-    "app/api/webhooks/clerk/route.ts": {
-      "maxDuration": 10
-    }
-  },
   "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        },
-        {
-          "key": "X-Frame-Options",
-          "value": "DENY"
-        },
-        {
-          "key": "X-XSS-Protection",
-          "value": "1; mode=block"
-        }
-      ]
-    },
     {
       "source": "/api/webhooks/(.*)",
       "headers": [
-        {
-          "key": "X-Robots-Tag",
-          "value": "noindex"
-        },
         {
           "key": "Access-Control-Allow-Origin",
           "value": "*"
@@ -51,32 +20,11 @@
           "value": "Content-Type, svix-id, svix-timestamp, svix-signature"
         }
       ]
-    },
-    {
-      "source": "/api/(.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "no-store, max-age=0"
-        }
-      ]
     }
   ],
-  "rewrites": [
-    {
-      "source": "/api/webhooks/stripe",
-      "destination": "/api/webhooks/stripe"
-    },
-    {
-      "source": "/api/webhooks/clerk",
-      "destination": "/api/webhooks/clerk"
+  "functions": {
+    "app/api/webhooks/clerk/route.ts": {
+      "maxDuration": 10
     }
-  ],
-  "public": true,
-  "protectionBypass": [
-    {
-      "source": "/api/webhooks/*",
-      "secret": "VERCEL_BYPASS_SECRET"
-    }
-  ]
+  }
 }
