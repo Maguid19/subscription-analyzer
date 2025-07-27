@@ -32,6 +32,15 @@
       ]
     },
     {
+      "source": "/api/webhooks/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        }
+      ]
+    },
+    {
       "source": "/api/(.*)",
       "headers": [
         {
@@ -50,5 +59,6 @@
       "source": "/api/webhooks/clerk",
       "destination": "/api/webhooks/clerk"
     }
-  ]
+  ],
+  "public": true
 }
