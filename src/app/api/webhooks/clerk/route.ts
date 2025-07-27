@@ -4,7 +4,7 @@ import { WebhookEvent } from '@clerk/nextjs/server';
 import { NextResponse } from 'next/server';
 
 // Handle OPTIONS requests for CORS
-export async function OPTIONS(req: Request) {
+export async function OPTIONS() {
   return new Response(null, {
     status: 200,
     headers: {
