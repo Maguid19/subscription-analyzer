@@ -1,68 +1,29 @@
-import { type Metadata } from 'next'
-import {
-  ClerkProvider,
-  SignInButton,
-  SignUpButton,
-  SignedIn,
-  SignedOut,
-  UserButton,
-} from '@clerk/nextjs'
-import { Geist, Geist_Mono } from 'next/font/google'
-import './globals.css'
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
+import { ClerkProvider } from "@clerk/nextjs";
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-})
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
-})
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Subscription Usage Analyzer - Monitor & Optimize Your Digital Subscriptions',
-  description: 'Take control of your digital subscriptions with AI-powered insights. Monitor, manage, and optimize your subscription spending to save money and eliminate unused services.',
-  keywords: 'subscription management, subscription tracker, subscription analyzer, digital subscriptions, subscription optimization, AI recommendations',
-  authors: [{ name: 'Subscription Analyzer Team' }],
-  openGraph: {
-    title: 'Subscription Usage Analyzer',
-    description: 'Monitor, manage, and optimize your digital subscriptions with AI-powered insights.',
-    type: 'website',
-    locale: 'en_US',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Subscription Usage Analyzer',
-    description: 'Monitor, manage, and optimize your digital subscriptions with AI-powered insights.',
-  },
-}
+  title: "SubscriptionAI - Save Money on Digital Subscriptions",
+  description: "Automatically track, analyze, and optimize your subscription spending with AI-powered insights. Stop wasting money on unused services.",
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-          <header className="flex justify-end items-center p-4 gap-4 h-16">
-            <SignedOut>
-              <SignInButton />
-              <SignUpButton>
-                <button className="bg-[#6c47ff] text-ceramic-white rounded-full font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 cursor-pointer">
-                  Sign Up
-                </button>
-              </SignUpButton>
-            </SignedOut>
-            <SignedIn>
-              <UserButton />
-            </SignedIn>
-          </header>
-          {children}
-        </body>
+        <head>
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        </head>
+        <body className={inter.className}>{children}</body>
       </html>
     </ClerkProvider>
-  )
+  );
 }
