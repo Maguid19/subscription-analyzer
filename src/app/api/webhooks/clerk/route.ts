@@ -3,6 +3,18 @@ import { headers } from 'next/headers';
 import { WebhookEvent } from '@clerk/nextjs/server';
 import { NextResponse } from 'next/server';
 
+// Handle OPTIONS requests for CORS
+export async function OPTIONS(req: Request) {
+  return new Response(null, {
+    status: 200,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'POST, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, svix-id, svix-timestamp, svix-signature',
+    },
+  });
+}
+
 export async function POST(req: Request) {
   // Get the webhook secret from environment variables
   const webhookSecret = process.env.CLERK_WEBHOOK_SECRET;
@@ -10,7 +22,12 @@ export async function POST(req: Request) {
   if (!webhookSecret) {
     console.error('CLERK_WEBHOOK_SECRET is not set');
     return new Response('Server configuration error', {
-      status: 500
+      status: 500,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, svix-id, svix-timestamp, svix-signature',
+      }
     });
   }
 
@@ -24,7 +41,12 @@ export async function POST(req: Request) {
   if (!svix_id || !svix_timestamp || !svix_signature) {
     console.error('Missing svix headers');
     return new Response('Error occurred -- no svix headers', {
-      status: 400
+      status: 400,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, svix-id, svix-timestamp, svix-signature',
+      }
     });
   }
 
@@ -47,7 +69,12 @@ export async function POST(req: Request) {
   } catch (err) {
     console.error('Error verifying webhook signature:', err);
     return new Response('Error occurred -- invalid signature', {
-      status: 400
+      status: 400,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, svix-id, svix-timestamp, svix-signature',
+      }
     });
   }
 
@@ -72,5 +99,11 @@ export async function POST(req: Request) {
   }
 
   // Return success response
-  return NextResponse.json({ success: true });
+  return NextResponse.json({ success: true }, {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'POST, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, svix-id, svix-timestamp, svix-signature',
+    }
+  });
 }
